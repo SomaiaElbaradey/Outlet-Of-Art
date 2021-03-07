@@ -15,6 +15,7 @@ export class CartComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  //delete Product from cart
   deleteProduct(_product) {
     if (confirm(`Are you sure you want to delete the selected product?`)) {
       this.CartService.deleteProduct(_product).subscribe(
@@ -23,6 +24,23 @@ export class CartComponent implements OnInit {
           console.log(err);
         }
     }
+  }
+
+  //add Product to cart
+  addProduct(_product) {
+    this.CartService.addProduct(
+      _product,
+    )
+      .subscribe(
+        response => console.log(response),
+        err => console.log(err)
+      );
+  }
+
+  //get Products for the user
+  getProducts() {
+    this.CartService.allProducts().subscribe((response) => {
+    });
   }
 
 }
