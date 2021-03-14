@@ -4,6 +4,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppComponent } from './app.component';
 import { CartComponent } from './components/cart/cart.component';
 import { ProductComponent} from './components/product/product.component';
+import {HttpClientModule} from '@angular/common/http';
 @NgModule({
   declarations: [
     AppComponent,
@@ -11,7 +12,7 @@ import { ProductComponent} from './components/product/product.component';
     ProductComponent
   ],
   imports: [
-    BrowserModule
+    BrowserModule,HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]
