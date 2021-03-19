@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { CartService } from 'src/app/services/cart.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-cart',
@@ -9,12 +10,37 @@ import { CartService } from 'src/app/services/cart.service';
 export class CartComponent implements OnInit {
 
   constructor(
+    private route:Router,
     private CartService: CartService,
   ) { }
+  productImg: string = '/assets/img/products/2.png';
+  priceImg: string = '/assets/img/4.png';
+  emptyCart: boolean = true;
+  total: number = 0;
+  productIds = [];
+  products = [];
+  isAdmin: boolean = localStorage.getItem("isAdmin") == "true";
 
   ngOnInit(): void {
+    //get Products for the user
+    this.getProducts();
   }
-
+  getProducts(){
+    this.CartService.allProducts().subscribe((response) => {
+      console.log(response);
+      this.products = response;
+      if (this.products.length == 0) this.emptyCart = true;
+      else this.emptyCart = false;
+      //the total price
+      this.products.forEach(element => {
+        this.total += element.price;
+      });
+      //product ids to check ouut
+      this.products.forEach(element => {
+        this.productIds.push(element._id);
+      });
+    }); 
+  }
   //delete Product from cart
   deleteProduct(_product) {
     if (confirm(`Are you sure you want to delete the selected product?`)) {
@@ -37,10 +63,23 @@ export class CartComponent implements OnInit {
       );
   }
 
-  //get Products for the user
-  getProducts() {
-    this.CartService.allProducts().subscribe((response) => {
-    });
+  //navigate to home
+  goHome() {
+    this.route.navigateByUrl('/home');
+  }
+
+  //checkout products to order
+  checkout() {
+    if (confirm(`Are you sure you want to order?`)) {
+      this.CartService.checkout(this.productIds, this.total)
+      .subscribe(
+        response => {
+          console.log(response);
+          this.getProducts();
+        },
+        err => console.log(err)
+      );
+    }
   }
 
 }

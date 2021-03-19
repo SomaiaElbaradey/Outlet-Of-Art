@@ -1,0 +1,16 @@
+.carousel-item h2 {
+    position: absolute; 
+    top: 200px; 
+    left: 300px;
+    width: 100%;
+    text-transform: uppercase;
+    color: rgb(70, 68, 68);
+    font-weight: 600;
+}
+
+.carousel-item h2 p{
+    text-transform: lowercase;
+    font-size: 17px;
+    color: #797878;
+    font-weight: 500;
+}

@@ -1,0 +1,43 @@
+.about-card{
+    margin-bottom: 90px;
+}
+
+.about-card:hover{
+    cursor: pointer;
+    transition: opacity 0.6s;
+    transition-timing-function: ease-in-out;
+    opacity: 0.9;
+}
+
+p{
+    color: #737373;
+}
+
+h4{
+    color: black;
+    text-transform: uppercase;
+    font-weight: 600;
+}
+
+h2{
+    color: black;
+    text-transform: uppercase;
+    font-weight: 600;
+}
+
+h2 span{
+    font-size: 59px;
+}
+
+span{
+    font-size: 39px;
+}
+
+.empty-space {
+    position: relative;
+    display: block;
+}
+
+.h100-md {
+    height: 100px;
+}

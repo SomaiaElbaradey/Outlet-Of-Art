@@ -1,0 +1,16 @@
+#addProductForm{
+    background-color: #eef2de;
+    padding: 17px;
+    margin-bottom: 49px;
+}
+
+#addProductForm input, #addProductForm textarea{
+    width: 70%;
+    margin: 0 auto;
+}
+
+#addProductForm label{
+    color: rgb(70, 68, 68);
+    font-size: 17px;
+    font-weight: bold;
+}

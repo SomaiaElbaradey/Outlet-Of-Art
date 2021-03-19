@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHandler, HttpHeaders } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
@@ -32,6 +32,16 @@ export class CartService {
       .post(
         `${this.baseURL}`,
         { _product },
+        { responseType: "text" }
+      )
+  }
+
+  //checkout to order
+  public checkout(_product, totalPrice): Observable<any> {
+    return this._HttpClient
+      .post(
+        `${this.baseURL}/checkout`,
+        { _product, totalPrice },
         { responseType: "text" }
       )
   }

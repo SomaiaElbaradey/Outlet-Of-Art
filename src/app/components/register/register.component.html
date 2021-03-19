@@ -1,0 +1,71 @@
+<div class="page-wrapper bg-gra-01 p-t-180 p-b-100 font-poppins">
+    <div class="wrapper wrapper--w780">
+        <div class="card card-3">
+            <div class="card-heading"></div>
+            <div class="card-body">
+                <h2 class="title">Registration</h2>
+                <form [formGroup]="myForm" method="post" action="">
+                    <div>
+                        <input class="input--style-3 js-datepicker" type="text" formControlName="username" placeholder="Username" name="username">
+                        <p *ngIf="myForm.controls.username.errors" class="alert ">
+                            <span *ngIf="myForm.controls.username.errors.minlength" class="alert-danger">
+                            length must be more than 5
+                            </span>
+            
+                            </p>
+                    </div>
+                    <hr class="input-group">
+                    
+                    <div>
+                        <input class="input--style-3 js-datepicker" type="email"  formControlName="email" placeholder="Email" name="Email">
+                        <p *ngIf="myForm.controls.email.errors" class="alert ">
+                  
+                            <span *ngIf="myForm.controls.email.errors.pattern" class="alert-danger">
+                            invalid email
+                            </span>
+                            <span *ngIf="myForm.get('email').errors?.serverError" class="alert-danger">
+                                {{myForm.get('email').errors?.serverError}}
+                                 </span>
+                            </p>
+
+                    </div>
+                    <hr class="input-group">
+
+                    <div>
+                        <input class="input--style-3" type="password"  formControlName="password" placeholder="Password" name="Password">
+                        <p *ngIf="myForm.controls.password.errors" class="alert ">
+                  
+                            <span *ngIf="myForm.controls.password.errors.minlength" class="alert-danger">
+                            length must be more than 6
+                            </span>
+                            </p>
+                    </div>
+                    <hr class="input-group">
+
+                    <div >
+                        <div class="rs-select2 js-select-simple select--no-search">
+                          <label class="gender">Gender  </label>  
+                           <select class="select-dropdown"  formControlName="gender">
+                                <option selected disabled="disabled" >Gender</option>
+                                <option >Male</option>
+                                <option>Female</option>
+                            </select>
+                            <p *ngIf="myForm.controls.gender.errors" class="alert ">
+                  
+                                <span *ngIf="myForm.controls.gender.errors.required" class="alert-danger">
+                                
+                                </span>
+                                </p>
+                            
+                        </div>
+                    </div>
+                    
+                    <div class="p-t-10">
+                        <button class="btn btn--pill btn-light " type="submit" (click)="Register()" [disabled]="!myForm.valid">Submit</button>
+                    </div>
+                </form>
+                <p class="p"(click)="login()">already have an acount</p>
+            </div>
+        </div>
+    </div>
+</div>

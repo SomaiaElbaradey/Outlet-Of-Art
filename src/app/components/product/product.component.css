@@ -1,0 +1,86 @@
+.cards>div{
+    margin-top: 100px;
+    gap:5%;
+    margin-bottom: 39px;
+}
+
+.cards .card{
+    border: none;
+    background-color: #eef2de;
+    color: rgb(70, 68, 68);
+    text-align: center;
+}
+
+.card-icon-div{
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    color: #eef2de;
+}
+
+.card .card-title{
+    font-weight: 600;
+    font-size: 21px;
+    padding: 5px;
+    margin: 0;
+    text-transform: uppercase;
+}
+
+.card .card-text{
+    font-size: 15px;
+}
+
+.cards .card:hover{
+    border-bottom: 5px #737373 solid ;
+}
+
+.paginationNo /deep/ .ngx-pagination .current {
+    background: #737373;
+    color: #fff;
+}
+
+.paginationNo{
+    margin-bottom: 10px;
+    color: #737373;
+    font-weight: 800;
+}
+
+.card{
+    margin-bottom: 1em;
+}
+
+.close-div{
+    display: inline-block;
+    background-image: url('src/assets/icons/x.png');
+    background-size: cover;
+    margin-left: 98%;
+    width: 28px;
+    height: 28px;
+}
+
+.close-div:hover{
+    cursor: pointer;
+}
+
+.product-header h2{
+    margin-bottom: 10px;
+    font-weight: 600;
+}
+
+.product-header p{
+    color: #797878;
+    margin-bottom: 23px;
+}
+
+.product-header h2 span{
+    font-size: 59px;
+}
+
+.product-btn{
+    margin-bottom: 20px!important;
+}
+
+.price{
+    font-weight: 600;
+    color: rgb(14, 112, 99);
+}

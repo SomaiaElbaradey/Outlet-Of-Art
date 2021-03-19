@@ -1,0 +1,46 @@
+<div class="text-center">
+    <div class="container mb-5">
+        <div class="empty-space h35-xs h100-md"></div>
+        <div *ngIf="orderFlag" class="row text-center">
+            <div class="col-12 order-header">
+                <img width="200" src={{priceImg}}>
+                <h4><span>O</span>rders</h4>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+            </div>
+        </div>
+        <div *ngIf="orderFlag" class="row">
+            <ng-template ngFor let-order [ngForOf]="orders" let-i="index">
+                <div class="cart-cover col-md-12">
+                    <div class="text-center">
+                        <article class="bg-text">
+                            <h4>{{order._id}}</h4>
+                            <a class="price">{{order.totalPrice}}$</a>
+                            <p>{{order.status}}</p>
+                            <div *ngIf="order.status=='pending'" class="btn-wrap" (click)="cancelOrder(order._id)">
+                                <a class="btn-1">
+                                    <span>Cancel Order</span></a>
+                            </div>
+                        </article>
+                    </div>
+                </div>
+            </ng-template>
+        </div>
+        <div *ngIf="!orderFlag">
+            <div class="cart-cover text-center">
+                <div class="row flex-sm nopadding">
+                    <div class="col-md-3 flex-item-2">
+                        <a><img src={{productImg}} alt=""></a>
+                    </div>
+                    <div class="col-md-9 flex-item-1">
+                        <article class="bg-text mt-5">
+                            <h4 class="warning-header">You have no orders</h4>
+                            <p>Add items to your cart and checkout to order.</p>
+                            <div class="btn-wrap"><a class="btn-1" (click)="goHome()"><span>Start Shopping</span></a>
+                            </div>
+                        </article>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

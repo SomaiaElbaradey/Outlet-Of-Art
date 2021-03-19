@@ -1,0 +1,19 @@
+.cart-cover{
+    padding-top: 0px 0px!important;
+}
+
+.cart-cover article {
+    padding-top: 0px!important;
+}
+
+.order-header{
+    margin-bottom: 10px;
+}
+
+.order-header p{
+    color: #797878;
+}
+
+.order-header h4 span{
+    font-size: 39px;
+}

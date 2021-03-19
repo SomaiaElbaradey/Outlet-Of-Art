@@ -1,0 +1,38 @@
+<div class="container cards">
+    <div class="row d-flex justify-content-center">
+        <div class="col-12 product-header text-center">
+            <h2><span>P</span>roducts</h2>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+            <div class="product-btn" *ngIf="isAdmin">
+                <a (click)="isAdding = !isAdding" class="btn-2">
+                    Add new product
+                </a>
+                <!-- <button (click)="isAdding = !isAdding" class="btn btn-outline-primary btn-sm mb-2">Add product</button> -->
+                <app-add-product (addProductEvent)="addProductEvent($event)" *ngIf="isAdding"></app-add-product>
+            </div>
+        </div>
+        <div *ngFor="let product of products | paginate: {
+            id: 'listing_pagination', itemsPerPage: 12, currentPage: page, totalItems: totalProducts}"
+            class=" card col-md-3" style="width: 18rem;">
+            <div class="card-body">
+                <div *ngIf="isAdmin;" (click)="removeProduct(product._id,i)"
+                    class="close-div text-right align-self-end">
+                </div>
+                <img src="{{product.image}}" width="250" class="img-fluid img-responsive rounded product-image">
+                <h5 class="card-title">{{product.title}}</h5>
+                <hr>
+                <div class="card-text text-center">
+                    <p class="details">{{product.details}} </p>
+                    <p class="price">${{product.price}} </p>
+                </div>
+                <div class="d-flex flex-column mt-4">
+                    <a (click)="addCart(product._id)" *ngIf="!isAdmin" class="btn-1">
+                        Add to cart
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <pagination-controls id="listing_pagination" class="text-center paginationNo" maxSize="6" directionLinks="true"
+        (pageChange)="page = $event"></pagination-controls>
+</div>

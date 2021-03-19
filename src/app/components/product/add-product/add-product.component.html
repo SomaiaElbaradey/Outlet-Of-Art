@@ -1,0 +1,49 @@
+<div class="container">
+    <div class="row">
+        <div class="col-12 product-header text-center">
+            <h2 class="text-uppercase mt-3">Add product</h2>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+        </div>
+        <div class="col-12 align-self-center">
+            <div id="addProductForm" class="text-center">
+                <div class="form-group">
+                    <label for="">Title</label>
+                    <input placeholder="Enter product title" (keydown)="checkTitle()" required class="form-control"
+                        type="text" [(ngModel)]="title">
+                    <span class="text-danger">{{titleError}}</span>
+                </div>
+                <div class="form-group">
+                    <label>Price</label>
+                    <input placeholder="Enter product price" min="0" (keydown)="checkPrice()" value="0" required
+                        class="form-control" [(ngModel)]="price" type="number" name="price">
+                    <span class="text-danger">{{priceError}}</span>
+                </div>
+                <div class="form-group">
+                    <label for="">Details</label>
+                    <textarea placeholder="Enter product details" (keydown)="checkDetails()" required
+                        class="form-control" [(ngModel)]="details" name="" id="" cols="30" rows="7"></textarea>
+                    <span class="text-danger">{{detailsError}}</span>
+                </div>
+                <div class="form-group product-image">
+                    <label>Product image</label>
+                    <input #productImage type="file" (change)="onSelectFile($event);checkImage()" class="form-control"
+                        name="image">
+                    <span class="text-danger">{{imgError}}</span>
+                </div>
+                <div class="form-group">
+                    <a class="btn-1" (click)="addProduct($event)" name="add-product">
+                        Add Product
+                    </a>
+                </div>
+                <div *ngIf="isAdded != null">
+                    <div *ngIf="isAdded" class="alert alert-success" role="alert">
+                        Product has been added successfully
+                    </div>
+                    <div *ngIf="!isAdded" class="alert alert-danger" role="alert">
+                        {{addProductError}}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
