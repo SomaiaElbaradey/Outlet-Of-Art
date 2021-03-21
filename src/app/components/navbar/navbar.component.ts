@@ -16,13 +16,16 @@ export class NavbarComponent implements OnInit {
   ngOnInit(): void {
 
     this.checkToken()
+    // listen to login component  to check tokens
     if (this.eventEmitterService.subsVar==undefined) {    
       this.eventEmitterService.subsVar = this.eventEmitterService.    
       invokeFirstComponentFunction.subscribe((name:string) => {    
         console.log("emitted")
         this.checkToken();    
+        this.user=true
+        this.isAdmin= localStorage.getItem("isAdmin") == "true";
       });    
-    }   
+    }      
   }
   ngOnChanges() {
     console.log("change...")

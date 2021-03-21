@@ -94,3 +94,14 @@ a {
 .warning-header{
     color: brown;
 }
+
+.paginationNo /deep/ .ngx-pagination .current {
+    background: #737373;
+    color: #fff;
+}
+
+.paginationNo{
+    margin-bottom: 10px;
+    color: #737373;
+    font-weight: 800;
+}

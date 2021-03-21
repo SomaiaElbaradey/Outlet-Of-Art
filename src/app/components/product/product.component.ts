@@ -13,9 +13,11 @@ import { CartService } from 'src/app/services/cart.service';
 export class ProductComponent implements OnInit {
     token = localStorage.getItem("Token");
     isAdmin: boolean = localStorage.getItem("isAdmin") == "true";
+    user: boolean = localStorage.getItem('Token') != null;
     isAdding: boolean;
     totalProducts: number;
     products = [];
+    allProducts = [];
     productImg: string = '/assets/img/products/2.png';
     page: Number = 1;
     constructor(
@@ -30,38 +32,46 @@ export class ProductComponent implements OnInit {
     }
     getAllProducts() {
         this.ProductService.allProducts().subscribe((response) => {
-            console.log(response)
-            this.products = response['products'];
+            this.allProducts = response['products'];
+            this.products = this.allProducts;
             this.totalProducts = this.products.length;
         }),
             err => {
                 console.log(err);
             };
     }
+
     //Comes from add-product component
     addProductEvent(event) {
         this.products.push(event);
     }
+
+    //remove product by id
     removeProduct(productId, index) {
-
         const sure = confirm("Are you sure to delete this product ?");
-
         if (sure == true) {
             this.http.delete(environment.api + '/api/product/' + productId)
                 .subscribe(res => {
                     console.log(index);
                     this.products.splice(index, 1);
                 },
-                err => {
-                    console.log(err)
-                })
+                    err => console.log(err))
         }
     }
 
+    //add product to user cart
     addCart(id) {
         this.CartService.addProduct(id).subscribe(Response => {
             console.log(Response)
         }),
             err => console.log(err)
+    }
+
+    //search for product
+    search(e) {
+        this.products = this.allProducts;
+        this.products = this.allProducts.filter((element) => {
+            return element.title.toLowerCase().includes(e.value.toLowerCase());
+        });
     }
 }

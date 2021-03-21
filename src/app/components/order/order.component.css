@@ -17,3 +17,26 @@
 .order-header h4 span{
     font-size: 39px;
 }
+
+.pending{
+    color: #ef8d32;
+}
+
+.accepted{
+    color: #0c9463;
+}
+
+.rejected{
+    color: #c70039;
+}
+
+.paginationNo /deep/ .ngx-pagination .current {
+    background: #737373;
+    color: #fff;
+}
+
+.paginationNo{
+    margin-bottom: 10px;
+    color: #737373;
+    font-weight: 800;
+}

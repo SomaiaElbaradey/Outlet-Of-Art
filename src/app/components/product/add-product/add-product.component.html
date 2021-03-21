@@ -25,10 +25,24 @@
                     <span class="text-danger">{{detailsError}}</span>
                 </div>
                 <div class="form-group product-image">
-                    <label>Product image</label>
-                    <input #productImage type="file" (change)="onSelectFile($event);checkImage()" class="form-control"
-                        name="image">
-                    <span class="text-danger">{{imgError}}</span>
+
+                    <mat-card class="example-card">
+                        <form [formGroup]="galleryForm">
+                            <mat-form-field class="example-full-width">
+                                <ngx-mat-file-input formControlName="imageFile" placeholder=""
+                                    [errorStateMatcher]="matcher">
+                                </ngx-mat-file-input>
+                                <button style="background-color: black; color: white;" type="submit" mat-flat-button
+                                    color="primary">
+                                    <mat-icon>upgrade</mat-icon>Product Image
+                                </button>
+                            </mat-form-field>
+                        </form>
+                    </mat-card>
+                    <span *ngIf="galleryForm.invalid == true">
+                        <span *ngIf="imagerr" class="text-danger">Please
+                            upload product image</span>
+                    </span>
                 </div>
                 <div class="form-group">
                     <a class="btn-1" (click)="addProduct($event)" name="add-product">

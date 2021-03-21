@@ -3,7 +3,8 @@
         <div class="empty-space h35-xs h100-md"></div>
         <div *ngIf="!emptyCart" class="row">
             <div class="col-md-7">
-                <ng-template ngFor let-product [ngForOf]="products" let-i="index">
+                <ng-template ngFor let-product [ngForOf]="products| paginate: {
+                    id: 'listing_pagination', itemsPerPage: 6, currentPage: page, totalItems: totalProducts}" let-i="index">
                     <div class="cart-cover text-center">
                         <div class="row flex-sm nopadding">
                             <div class="col-md-6 flex-item-2">
@@ -22,6 +23,8 @@
                         </div>
                     </div>
                 </ng-template>
+                <pagination-controls id="listing_pagination" class="text-center paginationNo" maxSize="6" directionLinks="true"
+        (pageChange)="page = $event"></pagination-controls>
             </div>
             <div class="col-md-5 text-center cart-price">
                 <article>

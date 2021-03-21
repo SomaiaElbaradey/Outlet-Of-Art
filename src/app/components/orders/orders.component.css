@@ -2,3 +2,13 @@
     margin-left: 10px;
     height: 40px;
 }
+
+.date {
+    color: #737373;
+    font-size: 13px;
+    margin-top: -15px;
+}
+
+.products{
+    margin-bottom: 15px;
+}

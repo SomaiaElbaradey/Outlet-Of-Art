@@ -20,9 +20,11 @@ export class OrdersComponent implements OnInit {
   orders: [];
   priceImg: string = '/assets/img/5.png';
   orderID;
+  totalOrders: number;
   ngOnInit(): void {
     this.OrderService.adminOrders().subscribe((response) => {
       this.orders = response;
+      this.totalOrders = this.orders.length;
       if (this.orders.length == 0) this.orderFlag = false;
       else this.orderFlag = true;
     }),

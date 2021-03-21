@@ -21,7 +21,7 @@
         </a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="/cart">
+        <a *ngIf="!isAdmin" class="nav-link" href="/cart">
           <i class="fa fa-shopping-cart"><span>Cart</span></i> 
         </a>
       </li>

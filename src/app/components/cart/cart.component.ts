@@ -20,6 +20,8 @@ export class CartComponent implements OnInit {
   productIds = [];
   products = [];
   isAdmin: boolean = localStorage.getItem("isAdmin") == "true";
+  page: Number = 1;
+  totalProducts: number;
 
   ngOnInit(): void {
     //get Products for the user
@@ -27,8 +29,8 @@ export class CartComponent implements OnInit {
   }
   getProducts(){
     this.CartService.allProducts().subscribe((response) => {
-      console.log(response);
       this.products = response;
+      this.totalProducts = this.products.length;
       if (this.products.length == 0) this.emptyCart = true;
       else this.emptyCart = false;
       //the total price

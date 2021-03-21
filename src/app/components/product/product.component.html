@@ -1,8 +1,15 @@
 <div class="container cards">
     <div class="row d-flex justify-content-center">
-        <div class="col-12 product-header text-center">
+        <div *ngIf="user;" class="col-12 product-header text-center">
             <h2><span>P</span>roducts</h2>
             <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+            <div class="search-container">
+                <button>
+                    <input #searchInput type="search" id="gsearch" name="gsearch" (keyup)="search(searchInput)"
+                        placeholder="Search..">
+                    <i class="far fa-search"></i>
+                </button>
+            </div>
             <div class="product-btn" *ngIf="isAdmin">
                 <a (click)="isAdding = !isAdding" class="btn-2">
                     Add new product
@@ -18,7 +25,7 @@
                 <div *ngIf="isAdmin;" (click)="removeProduct(product._id,i)"
                     class="close-div text-right align-self-end">
                 </div>
-                <img src="{{product.image}}" width="250" class="img-fluid img-responsive rounded product-image">
+                <img src="{{product.image}}" height="250" class="img-fluid img-responsive rounded product-image">
                 <h5 class="card-title">{{product.title}}</h5>
                 <hr>
                 <div class="card-text text-center">
@@ -33,6 +40,6 @@
             </div>
         </div>
     </div>
-    <pagination-controls id="listing_pagination" class="text-center paginationNo" maxSize="6" directionLinks="true"
+    <pagination-controls *ngIf="user;" id="listing_pagination" class="text-center paginationNo" maxSize="6" directionLinks="true"
         (pageChange)="page = $event"></pagination-controls>
 </div>

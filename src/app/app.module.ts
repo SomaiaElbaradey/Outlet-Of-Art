@@ -25,6 +25,14 @@ import { OrdersComponent } from './components/orders/orders.component';
 import { AboutComponent } from './components/about/about.component';
 import { LogginAuthGuardService } from './services/loggin-auth-guard.service';
 
+import { MatInputModule } from '@angular/material/input';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { MatIconModule } from '@angular/material/icon';
+import { MatButtonModule } from '@angular/material/button';
+import { MatCardModule } from '@angular/material/card';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MaterialFileInputModule } from 'ngx-material-file-input';
+
 const routes: Routes = [
   { path: 'home', component: HomeComponent },
   { path: '', component: HomeComponent },
@@ -61,7 +69,15 @@ const routes: Routes = [
     ReactiveFormsModule,
     FormsModule,
     RouterModule.forRoot(routes),
-    NgxPaginationModule
+    NgxPaginationModule,
+    
+    MatInputModule,
+    MatProgressSpinnerModule,
+    MatIconModule,
+    MatButtonModule,
+    MatCardModule,
+    MatFormFieldModule,
+    MaterialFileInputModule
   ],
   providers: [
     AuthGuardService,

@@ -1,8 +1,8 @@
 .carousel-item h2 {
     position: absolute; 
     top: 200px; 
-    left: 300px;
-    width: 100%;
+    left: 20%;
+    width: 60%;
     text-transform: uppercase;
     color: rgb(70, 68, 68);
     font-weight: 600;

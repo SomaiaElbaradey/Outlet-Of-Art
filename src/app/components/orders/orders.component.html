@@ -9,13 +9,23 @@
             </div>
         </div>
         <div *ngIf="orderFlag" class="row">
-            <ng-template ngFor let-order [ngForOf]="orders" let-i="index">
+            <ng-template ngFor let-order [ngForOf]="orders| paginate: {
+                id: 'listing_pagination', itemsPerPage: 6, currentPage: page, totalItems: totalOrders}" let-i="index">
                 <div class="cart-cover col-md-12">
                     <div class="text-center">
                         <article class="bg-text">
                             <h4>{{order._id}}</h4>
+                            <p>{{order.username}}</p>
+                            <hr>
+                            <div class="products">
+                                <ng-template ngFor let-product [ngForOf]="order.productNames" let-i="index">
+                                    <span class="mr-4">{{product.title}}</span>
+                                </ng-template>
+                            </div>
                             <a class="price">{{order.totalPrice}}$</a>
-                            <p>{{order.status}}</p>
+                            <p class="pending" *ngIf="order.status==='pending'">Pending</p>
+                            <p class="accepted" *ngIf="order.status==='accepted'">Accepted</p>
+                            <p class="rejected" *ngIf="order.status==='rejected'">Rejected</p>
                             <form #statusForm>
                                 <select name="status" class="btn-1">
                                     <option value={{order.status}} selected disabled>status</option>
@@ -31,7 +41,10 @@
                         </article>
                     </div>
                 </div>
+                <p *ngIf="order.date" class="date">{{order.date}}</p>
             </ng-template>
+            <pagination-controls id="listing_pagination" class="text-center paginationNo" maxSize="6" directionLinks="true"
+        (pageChange)="page = $event"></pagination-controls>
         </div>
         <div *ngIf="!orderFlag">
             <div class="cart-cover text-center">

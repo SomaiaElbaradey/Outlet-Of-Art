@@ -23,6 +23,7 @@
     font-size: 21px;
     padding: 5px;
     margin: 0;
+    margin-top: 10px;
     text-transform: uppercase;
 }
 
@@ -83,4 +84,37 @@
 .price{
     font-weight: 600;
     color: rgb(14, 112, 99);
+}
+
+
+.search-container button{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin: 0 auto;
+    margin-bottom: 23px;
+}
+
+input:focus{
+    border-style: none!important;
+    outline: none;
+}
+
+.search-container input{
+    border-style: none;  
+    width: 100%;
+    font-size: 17px;
+    align-self: center;
+
+}
+
+.search-container button{
+    background-color: white; 
+    border-radius: 17px;
+    width: 60%;
+    height: 39px;
+}
+
+.fa-search{
+    align-self: center;
 }
