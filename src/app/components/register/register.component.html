@@ -51,15 +51,17 @@
                                 <option>Female</option>
                             </select>
                             <p *ngIf="myForm.controls.gender.errors" class="alert ">
-                  
                                 <span *ngIf="myForm.controls.gender.errors.required" class="alert-danger">
-                                
                                 </span>
-                                </p>
-                            
+                            </p>
                         </div>
                     </div>
-                    
+                    <br>
+                    <p>
+                        <span class="alert-danger">
+                            {{err}}
+                        </span>
+                    </p>
                     <div class="p-t-10">
                         <button class="btn btn--pill btn-light " type="submit" (click)="Register()" [disabled]="!myForm.valid">Submit</button>
                     </div>

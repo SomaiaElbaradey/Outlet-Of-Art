@@ -8,6 +8,7 @@ footer {
 
 .footer-element {
     margin-left: 40px;
+    margin-bottom: 25px;
 }
 
 a, p {
@@ -20,13 +21,13 @@ a, p {
     margin-top: 23px;
 }
 
-h6{
+h6 {
     line-height: 24px;
     font-weight: bold;
     text-transform: uppercase;
 }
 
-.follow .element{
+.follow .element {
     margin-top: 10px;
     margin-right: 13px;
     cursor: pointer;

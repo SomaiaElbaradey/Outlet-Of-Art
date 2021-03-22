@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CartService } from 'src/app/services/cart.service';
 import { Router } from '@angular/router';
+import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-cart',
@@ -10,8 +11,9 @@ import { Router } from '@angular/router';
 export class CartComponent implements OnInit {
 
   constructor(
-    private route:Router,
+    private route: Router,
     private CartService: CartService,
+    private modalService: NgbModal
   ) { }
   productImg: string = '/assets/img/products/2.png';
   priceImg: string = '/assets/img/4.png';
@@ -22,13 +24,15 @@ export class CartComponent implements OnInit {
   isAdmin: boolean = localStorage.getItem("isAdmin") == "true";
   page: Number = 1;
   totalProducts: number;
+  closeResult: string;
 
   ngOnInit(): void {
     //get Products for the user
     this.getProducts();
   }
-  getProducts(){
+  getProducts() {
     this.CartService.allProducts().subscribe((response) => {
+      this.total = 0;
       this.products = response;
       this.totalProducts = this.products.length;
       if (this.products.length == 0) this.emptyCart = true;
@@ -41,17 +45,27 @@ export class CartComponent implements OnInit {
       this.products.forEach(element => {
         this.productIds.push(element._id);
       });
-    }); 
+    });
   }
+
   //delete Product from cart
   deleteProduct(_product) {
-    if (confirm(`Are you sure you want to delete the selected product?`)) {
-      this.CartService.deleteProduct(_product).subscribe(
-        () => this.ngOnInit()),
-        err => {
-          console.log(err);
-        }
-    }
+    this.modalService.open(_product, { ariaLabelledBy: 'modal-basic-title' }).result.then((result) => {
+      this.closeResult = `Closed with: ${result}`;
+    }, (reason) => {
+      this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
+    });
+  }
+  _product:string;
+  productId(product){
+    this._product = product;
+  }
+  deleteTheProduct() {
+    this.CartService.deleteProduct(this._product).subscribe(
+      () => this.getProducts()),
+      err => {
+        console.log(err);
+      }
   }
 
   //add Product to cart
@@ -71,16 +85,32 @@ export class CartComponent implements OnInit {
   }
 
   //checkout products to order
-  checkout() {
-    if (confirm(`Are you sure you want to order?`)) {
-      this.CartService.checkout(this.productIds, this.total)
+  checkout(_order) {
+    this.modalService.open(_order, { ariaLabelledBy: 'modal-basic-title' }).result.then((result) => {
+      this.closeResult = `Closed with: ${result}`;
+    }, (reason) => {
+      this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
+    });
+  }
+  checkoutOrder() {
+    this.CartService.checkout(this.productIds, this.total)
       .subscribe(
         response => {
-          console.log(response);
+          this.total = 0;
           this.getProducts();
         },
         err => console.log(err)
       );
+  }
+
+  
+  private getDismissReason(reason: any): string {
+    if (reason === ModalDismissReasons.ESC) {
+      return 'by pressing ESC';
+    } else if (reason === ModalDismissReasons.BACKDROP_CLICK) {
+      return 'by clicking on a backdrop';
+    } else {
+      return `with: ${reason}`;
     }
   }
 

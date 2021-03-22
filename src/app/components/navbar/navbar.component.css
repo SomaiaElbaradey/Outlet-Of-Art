@@ -79,8 +79,23 @@ top: -10px;
 }
 }
 
+@media (max-width: 992px){
+  nav a{
+    background-color: rgba(255, 255, 255, 0.692)!important;
+  }
+  .fa{
+    margin: 0px!important;
+    padding: 0px!important;
+  }
+  .navbar-nav{
+    margin: 0px!important;
+  }
+}
+
+
 @media (min-width: 992px) {
-.navbar-icon-top.navbar-expand-lg .navbar-nav .nav-link {
+.navbar-icon-top.navbar-expand-lg .navbar-nav .nav-link{
+  margin: 0;
   text-align: center;
   display: table-cell;
   height: 70px;
@@ -88,7 +103,7 @@ top: -10px;
   padding-top: 0;
   padding-bottom: 0;
 }
-
+  
 .navbar-icon-top.navbar-expand-lg .navbar-nav .nav-link > .fa {
   display: block;
   width: 48px;

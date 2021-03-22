@@ -6,12 +6,11 @@
                 <h2 class="title">Login</h2>
                 <form [formGroup]="myForm" method="post" action="">
 
-                    <div >
+                    <div>
                         <input class="input--style-3 js-datepicker" type="email" formControlName="email"
                             placeholder="Email" name="Email">
 
                         <p *ngIf="myForm.controls.email.errors" class="alert ">
-
                             <span *ngIf="myForm.controls.email.errors.pattern" class="alert-danger">
                                 invalid email
                             </span>
@@ -19,7 +18,6 @@
                                 {{myForm.get('email').errors?.serverError}}
                             </span>
                         </p>
-
                     </div>
                     <hr class="input-group">
 
@@ -27,17 +25,19 @@
                         <input class="input--style-3" type="password" formControlName="password" placeholder="Password"
                             name="Password">
                         <p *ngIf="myForm.controls.password.errors" class="alert ">
-
                             <span *ngIf="myForm.controls.password.errors.minlength" class="alert-danger">
                                 length must be more than 6
                             </span>
                         </p>
                     </div>
                     <hr class="input-group">
-
+                    <p class="">
+                        <span class="alert-danger">
+                            {{err}}
+                        </span>
+                    </p>
                     <div class="p-t-10">
-                        <button class="btn" type="submit" (click)="Login()"
-                            [disabled]="!myForm.valid">Login</button>
+                        <button class="btn" type="submit" (click)="Login()" [disabled]="!myForm.valid">Login</button>
                     </div>
                 </form>
                 <p class="p" (click)="register()">create new account</p>

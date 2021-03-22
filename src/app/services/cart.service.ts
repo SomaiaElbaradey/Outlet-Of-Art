@@ -45,7 +45,7 @@ export class CartService {
   public checkout(_product, totalPrice): Observable<any> {
     return this._HttpClient
       .post(
-        `${this.baseURL}/checkout`,
+        `${this.baseURL}checkout`,
         { _product, totalPrice },
         { responseType: "text" }
       )
@@ -54,7 +54,7 @@ export class CartService {
   ///
   public get(): Observable<any> {
     return this._HttpClient
-      .get(`${this.baseURL}/image`)
+      .get(`${this.baseURL}image`)
   }
 
 }

@@ -22,7 +22,7 @@
             id: 'listing_pagination', itemsPerPage: 12, currentPage: page, totalItems: totalProducts}"
             class=" card col-md-3" style="width: 18rem;">
             <div class="card-body">
-                <div *ngIf="isAdmin;" (click)="removeProduct(product._id,i)"
+                <div *ngIf="isAdmin;" (click)="removeProduct(proModal); proId(product._id,i)"
                     class="close-div text-right align-self-end">
                 </div>
                 <img src="{{product.image}}" height="250" class="img-fluid img-responsive rounded product-image">
@@ -42,4 +42,20 @@
     </div>
     <pagination-controls *ngIf="user;" id="listing_pagination" class="text-center paginationNo" maxSize="6" directionLinks="true"
         (pageChange)="page = $event"></pagination-controls>
+
+    <!-- modal to delete product -->
+    <ng-template #proModal let-modal>
+        <div class="modal-header">
+            <h5 class="modal-title">Delete Product?</h5>
+        </div>
+        <div class="modal-body">
+            <p>
+                This can’t be undone. Once you press delete the product will be deleted permentally.
+            </p>
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-danger" (click)="deleteProduct(); modal.close('')">Delete</button>
+            <button type="button" class="btn btn-secondary" (click)="modal.close('')">Close</button>
+        </div>
+    </ng-template>
 </div>

@@ -3,6 +3,7 @@ import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http
 import { environment } from "src/environments/environment";
 import { ProductService } from 'src/app/services/product.service';
 import { CartService } from 'src/app/services/cart.service';
+import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
     selector: 'app-product',
@@ -20,10 +21,12 @@ export class ProductComponent implements OnInit {
     allProducts = [];
     productImg: string = '/assets/img/products/2.png';
     page: Number = 1;
+    closeResult: string;
     constructor(
         private http: HttpClient,
         private ProductService: ProductService,
         private CartService: CartService,
+        private modalService: NgbModal
     ) { }
     ngOnInit(): void {
         this.isAdding = false;
@@ -48,15 +51,25 @@ export class ProductComponent implements OnInit {
 
     //remove product by id
     removeProduct(productId, index) {
-        const sure = confirm("Are you sure to delete this product ?");
-        if (sure == true) {
-            this.http.delete(environment.api + '/api/product/' + productId)
-                .subscribe(res => {
-                    console.log(index);
-                    this.products.splice(index, 1);
-                },
-                    err => console.log(err))
-        }
+        this.modalService.open(productId, { ariaLabelledBy: 'modal-basic-title' }).result.then((result) => {
+            this.closeResult = `Closed with: ${result}`;
+        }, (reason) => {
+            this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
+        });
+    }
+    productId;
+    index;
+    proId(_product, _index) {
+        this.productId = _product;
+        this.index = _index;
+    }
+    deleteProduct() {
+        this.http.delete(environment.api + '/api/product/' + this.productId)
+        .subscribe(res => {
+            //   console.log(this.index);
+            this.products.splice(this.index, 1);
+        },
+            err => console.log(err))
     }
 
     //add product to user cart
@@ -73,5 +86,15 @@ export class ProductComponent implements OnInit {
         this.products = this.allProducts.filter((element) => {
             return element.title.toLowerCase().includes(e.value.toLowerCase());
         });
+    }
+
+    private getDismissReason(reason: any): string {
+        if (reason === ModalDismissReasons.ESC) {
+            return 'by pressing ESC';
+        } else if (reason === ModalDismissReasons.BACKDROP_CLICK) {
+            return 'by clicking on a backdrop';
+        } else {
+            return `with: ${reason}`;
+        }
     }
 }
