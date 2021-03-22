@@ -27,6 +27,6 @@ export class LoginService {
   }
 
   public isAdmin() {
-    return !!(localStorage.getItem("isAdmin"));
+    return localStorage.getItem("isAdmin")=="true";
   }
 }

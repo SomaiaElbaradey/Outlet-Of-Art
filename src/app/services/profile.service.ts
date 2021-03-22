@@ -41,11 +41,8 @@ export class ProfileService {
       .get(
         `${this.baseURL}`, {
         headers: new HttpHeaders()
-          .set('user-token', localStorage.getItem('Token')
-
-          )
+          .set('user-token', localStorage.getItem('Token'))
         , observe: 'response',
-
       }
       )
   }

@@ -56,23 +56,23 @@ export class CartComponent implements OnInit {
       this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
     });
   }
-  _product:string;
-  productId(product){
+  _product: string;
+  productId(product) {
     this._product = product;
   }
   deleteTheProduct() {
     this.CartService.deleteProduct(this._product).subscribe(
-      () => this.getProducts()),
-      err => {
+      res => {
+        this.getProducts();
+        this.route.navigateByUrl('/cart');
+      }, err => {
         console.log(err);
-      }
+      })
   }
 
   //add Product to cart
   addProduct(_product) {
-    this.CartService.addProduct(
-      _product,
-    )
+    this.CartService.addProduct(_product)
       .subscribe(
         response => console.log(response),
         err => console.log(err)
@@ -97,13 +97,13 @@ export class CartComponent implements OnInit {
       .subscribe(
         response => {
           this.total = 0;
+          this.route.navigateByUrl('/cart');
           this.getProducts();
         },
         err => console.log(err)
       );
   }
 
-  
   private getDismissReason(reason: any): string {
     if (reason === ModalDismissReasons.ESC) {
       return 'by pressing ESC';

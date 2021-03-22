@@ -65,11 +65,11 @@ export class ProductComponent implements OnInit {
     }
     deleteProduct() {
         this.http.delete(environment.api + '/api/product/' + this.productId)
-        .subscribe(res => {
-            //   console.log(this.index);
-            this.products.splice(this.index, 1);
-        },
-            err => console.log(err))
+            .subscribe(res => {
+                //   console.log(this.index);
+                this.products.splice(this.index, 1);
+            },
+                err => console.log(err))
     }
 
     //add product to user cart
@@ -87,6 +87,20 @@ export class ProductComponent implements OnInit {
             return element.title.toLowerCase().includes(e.value.toLowerCase());
         });
     }
+
+    //open image
+    image: string;
+    imageId(_image) {
+        this.image = _image;
+    }
+    openImage(_image) {
+        this.modalService.open(_image, { ariaLabelledBy: 'modal-basic-title' }).result.then((result) => {
+            this.closeResult = `Closed with: ${result}`;
+        }, (reason) => {
+            this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
+        });
+    }
+
 
     private getDismissReason(reason: any): string {
         if (reason === ModalDismissReasons.ESC) {

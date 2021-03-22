@@ -22,19 +22,20 @@ export class OrderService {
   //get all orders for admin
   public adminOrders(): Observable<any> {
     return this._HttpClient
-      .get(`${this.baseURL}/orders`)
+      .get(`${this.baseURL}orders`)
   }
 
   //cancel pending order
   public cancelOrder(id: string): Observable<any> {
     return this._HttpClient
-      .delete(`${this.baseURL}/${id}`)
+      .delete(`${this.baseURL}${id}`,
+      { responseType: "text" })
   }
 
   //change order status for admin
   public orderStatus(id:string, status:string): Observable<any> {
     return this._HttpClient
-      .patch(`${this.baseURL}/${id}`, 
+      .patch(`${this.baseURL}${id}`, 
       {status},
       { responseType: "text" }
       )
