@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { CartService } from 'src/app/services/cart.service';
 import { Router } from '@angular/router';
 import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
+import { NotificationService } from '../../services/notification.service';
 
 @Component({
   selector: 'app-cart',
@@ -13,7 +14,8 @@ export class CartComponent implements OnInit {
   constructor(
     private route: Router,
     private CartService: CartService,
-    private modalService: NgbModal
+    private modalService: NgbModal,
+    private notifyService : NotificationService
   ) { }
   productImg: string = '/assets/img/products/2.png';
   priceImg: string = '/assets/img/4.png';
@@ -63,6 +65,7 @@ export class CartComponent implements OnInit {
   deleteTheProduct() {
     this.CartService.deleteProduct(this._product).subscribe(
       res => {
+        this.notifyService.showInfo("Product has been deleted from your cart", "Delete cart product")
         this.getProducts();
         this.route.navigateByUrl('/cart');
       }, err => {
@@ -96,6 +99,7 @@ export class CartComponent implements OnInit {
     this.CartService.checkout(this.productIds, this.total)
       .subscribe(
         response => {
+        this.notifyService.showSuccess("Products has been ordered successfully", "Make Order")
           this.total = 0;
           this.route.navigateByUrl('/cart');
           this.getProducts();

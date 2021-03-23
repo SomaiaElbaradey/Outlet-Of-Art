@@ -37,6 +37,9 @@ import { MatCardModule } from '@angular/material/card';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MaterialFileInputModule } from 'ngx-material-file-input';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { ToastrModule } from 'ngx-toastr';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { PromotionComponent } from './components/promotion/promotion.component';
 
 const routes: Routes = [
   { path: 'home', component: HomeComponent },
@@ -66,7 +69,8 @@ const routes: Routes = [
     SliderComponent,
     AboutComponent,
     OrdersComponent,
-    AddProductComponent
+    AddProductComponent,
+    PromotionComponent
   ],
   imports: [
     BrowserModule,
@@ -74,6 +78,8 @@ const routes: Routes = [
     ReactiveFormsModule,
     FormsModule,
     RouterModule.forRoot(routes),
+    ToastrModule.forRoot(),
+    BrowserAnimationsModule,
     NgxPaginationModule,
     NgbModule,
     MatInputModule,
@@ -87,6 +93,8 @@ const routes: Routes = [
   providers: [
     AuthGuardService,
     LogginAuthGuardService,
+    UserAuthService,
+    AdminAuthService,
     {
       provide: HTTP_INTERCEPTORS,
       useClass: TokenInterceptorService,

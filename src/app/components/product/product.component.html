@@ -18,6 +18,7 @@
                 <app-add-product (addProductEvent)="addProductEvent($event)" *ngIf="isAdding"></app-add-product>
             </div>
         </div>
+        <div *ngIf="products.length==0 && user">No Items Found..</div>
         <div *ngFor="let product of products | paginate: {
             id: 'listing_pagination', itemsPerPage: 12, currentPage: page, totalItems: totalProducts}"
             class=" card col-md-3" style="width: 18rem;">
@@ -25,12 +26,14 @@
                 <div *ngIf="isAdmin;" (click)="removeProduct(proModal); proId(product._id,i)"
                     class="close-div text-right align-self-end">
                 </div>
-                <img src="{{product.image}}" (click)="openImage(imageModal); imageId(product.image)" height="250"
-                    class="img-fluid img-responsive rounded product-image">
-                <h5 class="card-title">{{product.title}}</h5>
+                <div class="product-img text-center">
+                    <img src="{{product.image}}" (click)="openImage(imageModal); imageId(product)"
+                        class="img-fluid img-responsive product-image align-self-center">
+                </div>
+                <h5 class="card-title">{{product.title.slice(0,13)}}</h5>
                 <hr>
                 <div class="card-text text-center">
-                    <p class="details">{{product.details}} </p>
+                    <p class="details">{{product.details.slice(0,50)}} </p>
                     <p class="price">${{product.price}} </p>
                 </div>
                 <div class="d-flex flex-column mt-4">
@@ -63,10 +66,14 @@
     <!-- modal to open product -->
     <ng-template #imageModal let-modal>
         <div class="modal-header">
-            <h5 class="modal-title"></h5>
+            <h5 class="modal-title">Product Details</h5>
         </div>
         <div class="modal-body">
-            <img width="100%" src="{{image}}">
+            <img width="100%" src="{{image.image}}">
         </div>
+        <h5 class="text-center p-3">
+            {{image.title}}
+        </h5>
+        <p class="text-center p-3">{{image.details}}</p>
     </ng-template>
 </div>

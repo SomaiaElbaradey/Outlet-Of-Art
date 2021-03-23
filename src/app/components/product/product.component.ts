@@ -4,6 +4,7 @@ import { environment } from "src/environments/environment";
 import { ProductService } from 'src/app/services/product.service';
 import { CartService } from 'src/app/services/cart.service';
 import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
+import { NotificationService } from '../../services/notification.service'
 
 @Component({
     selector: 'app-product',
@@ -26,7 +27,8 @@ export class ProductComponent implements OnInit {
         private http: HttpClient,
         private ProductService: ProductService,
         private CartService: CartService,
-        private modalService: NgbModal
+        private modalService: NgbModal,
+        private notifyService : NotificationService
     ) { }
     ngOnInit(): void {
         this.isAdding = false;
@@ -65,17 +67,15 @@ export class ProductComponent implements OnInit {
     }
     deleteProduct() {
         this.http.delete(environment.api + '/api/product/' + this.productId)
-            .subscribe(res => {
-                //   console.log(this.index);
-                this.products.splice(this.index, 1);
-            },
+            .subscribe(res =>
+                this.getAllProducts(),
                 err => console.log(err))
     }
 
     //add product to user cart
     addCart(id) {
         this.CartService.addProduct(id).subscribe(Response => {
-            console.log(Response)
+            this.notifyService.showSuccess("Product added to your cart successfuly ", "Added to cart")
         }),
             err => console.log(err)
     }

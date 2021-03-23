@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { OrderService } from 'src/app/services/order.service';
 import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
+import { NotificationService } from '../../services/notification.service';
 
 @Component({
   selector: 'app-order',
@@ -13,7 +14,8 @@ export class OrderComponent implements OnInit {
   constructor(
     private route: Router,
     private OrderService: OrderService,
-    private modalService: NgbModal
+    private modalService: NgbModal,
+    private notifyService : NotificationService
   ) { }
   orderFlag: boolean;
   productImg: string = '/assets/img/products/1.png';
@@ -54,7 +56,10 @@ export class OrderComponent implements OnInit {
   }
   deleteOrder() {
     this.OrderService.cancelOrder(this.order).subscribe(
-      () => this.getOrders()),
+      () => {
+        this.getOrders();
+        this.notifyService.showInfo("Order has been canceled", "Cancel order")
+      }),
       err => {
         console.log(err);
       }

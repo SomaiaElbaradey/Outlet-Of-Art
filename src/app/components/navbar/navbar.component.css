@@ -2,6 +2,10 @@
   background-color: white;
 }
 
+.navbar-nav > li {
+float: left;
+position: relative;
+}
 .navbar-icon-top .navbar-nav .nav-link > .fa {
 position: relative;
 width: 36px;
@@ -11,7 +15,6 @@ padding:0px 40px;
 
 .navbar-icon-top .navbar-nav .nav-link > .fa span{
 font-size: 15px;
-padding: 7px;
 }
 
 .navbar-brand{
@@ -80,22 +83,20 @@ top: -10px;
 }
 
 @media (max-width: 992px){
-  nav a{
-    background-color: rgba(255, 255, 255, 0.692)!important;
-  }
-  .fa{
-    margin: 0px!important;
-    padding: 0px!important;
-  }
-  .navbar-nav{
-    margin: 0px!important;
-  }
+nav a{
+  background-color: rgba(255, 255, 255, 0.692)!important;
+}
+.fa{
+  margin: 0px!important;
+  padding: 0px!important;
+}
+.navbar-nav{
+  margin: 0px!important;
+}
 }
 
-
 @media (min-width: 992px) {
-.navbar-icon-top.navbar-expand-lg .navbar-nav .nav-link{
-  margin: 0;
+.navbar-icon-top.navbar-expand-lg .navbar-nav .nav-link {
   text-align: center;
   display: table-cell;
   height: 70px;
@@ -103,7 +104,7 @@ top: -10px;
   padding-top: 0;
   padding-bottom: 0;
 }
-  
+
 .navbar-icon-top.navbar-expand-lg .navbar-nav .nav-link > .fa {
   display: block;
   width: 48px;
@@ -144,4 +145,20 @@ top: -10px;
   margin-bottom: 10px;
   margin-top: 5px;
   color: rgba(0, 0, 0, 0.5)
+}
+
+.active{
+  color: black;
+
+}
+.active-profile{
+  color: black;
+
+}
+.navbar-nav .active i::after {
+  bottom: -10px;
+  content: " ";
+  left: 30px;
+  position: absolute;
+  right: -25px;
 }

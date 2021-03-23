@@ -2,10 +2,10 @@
 <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
   integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-<!------ Include the above in your HEAD tag ---------->
 
-<nav style="padding: 3px 6px; height: 60px;" class="navbar navbar-icon-top navbar-expand-lg navbar-light text-center sticky-top">
-  <a class="navbar-brand" href="">
+
+<nav style="padding: 3px 6px; height: 60px;" class="navbar navbar-icon-top navbar-expand-lg text-center navbar-light  sticky-top">
+  <a class="navbar-brand" href="/">
     <img src="/../../../assets/logo2.png" width="50" height="25">
   </a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
@@ -15,42 +15,42 @@
 
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
-      <li class="nav-item active">
-        <a class="nav-link" href="/home">
+      <li class="nav-item ">
+        <a class="nav-link" routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
           <i class="fa fa-home"><span>Home</span></i> 
         </a>
       </li>
-      <li class="nav-item">
-        <a *ngIf="!isAdmin" class="nav-link" href="/cart">
+      <li class="nav-item" >
+        <a *ngIf="!isAdmin" class="nav-link"  routerLink="/cart" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
           <i class="fa fa-shopping-cart"><span>Cart</span></i> 
         </a>
       </li>
-      <li class="nav-item">
-        <a class="nav-link" *ngIf="!isAdmin" href="/order">
+      <li class="nav-item" >
+        <a class="nav-link" *ngIf="!isAdmin"  routerLink="/order" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
           <i class="fa fa-archive"><span>Order</span></i> 
         </a>
       </li>
-      <li class="nav-item">
-        <a *ngIf="isAdmin" class="nav-link " href="/orders">
+      <li class="nav-item" >
+        <a *ngIf="isAdmin" class="nav-link "  routerLink="/orders" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
           <i class="fa fa-archive"><span>Orders</span></i> 
         </a>
       </li>
-      <li class="nav-item">
-        <a class="nav-link " href="/about">
+      <li class="nav-item" >
+        <a class="nav-link "  routerLink="/about" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
           <i class="fa fas fa-info-circle"><span>About</span></i>
         </a>
       </li>
     </ul>
     
-    <ul class="navbar-nav">
-      <li class="nav-item">
-        <a class="nav-link" [href]="root" (click)=" onClick()">
+    <ul class="navbar-nav ">
+      <li class="nav-item" >
+        <a class="nav-link" [routerLink]="root" routerLinkActive="active-profile" [routerLinkActiveOptions]="{exact: true}" (click)=" onClick()">
           <i [class]="iconClass"></i>
           {{action}}
         </a>
       </li>
       <li class="nav-item" (click)="logOut()">
-        <a *ngIf="user" class="nav-link" href="/login">
+        <a *ngIf="user" class="nav-link" href="/">
           <i class="fas fa-sign-out-alt fa-lg"></i>
           Sign out
         </a>

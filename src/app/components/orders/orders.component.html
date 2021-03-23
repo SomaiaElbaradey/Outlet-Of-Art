@@ -19,7 +19,7 @@
                             <hr>
                             <div class="products">
                                 <ng-template ngFor let-product [ngForOf]="order.productNames" let-i="index">
-                                    <span class="mr-4">{{product.title}}</span>
+                                    <span class="mr-4">{{product.title.slice(0,13)}}</span>
                                 </ng-template>
                             </div>
                             <a class="price">{{order.totalPrice}}$</a>

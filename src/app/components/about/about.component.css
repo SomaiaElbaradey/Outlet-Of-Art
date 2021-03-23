@@ -43,11 +43,11 @@ span {
     height: 100px;
 }
 
-.cover-about {
+/* .cover-about {
     display: block;
     background-image: url('src/assets/about/4.png');
     background-size: contain;
     background-repeat: no-repeat;
     width: 100%;
     height: 33em;
-}
+} */
