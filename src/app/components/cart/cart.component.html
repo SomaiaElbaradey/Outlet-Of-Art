@@ -6,10 +6,13 @@
                 <ng-template ngFor let-product [ngForOf]="products| paginate: {
                     id: 'listing_pagination', itemsPerPage: 6, currentPage: page, totalItems: totalProducts}"
                     let-i="index">
+                    <div *ngIf="isLoading;">
+                        <app-spinner></app-spinner>
+                    </div>
                     <div class="cart-cover text-center">
                         <div class="row flex-sm nopadding">
                             <div class="col-md-6 flex-item-2 product-img">
-                                <a><img src="{{product.image}}" alt="" class="img-fluid"></a>
+                                <a><img width="70%" src="{{product.image}}" alt="" class="img-fluid"></a>
                             </div>
                             <div class="col-md-6 flex-item-1">
                                 <article class="bg-text ">
@@ -41,7 +44,7 @@
             </div>
         </div>
 
-        <div *ngIf="emptyCart">
+        <div *ngIf="emptyCart&&!isLoading">
             <div class="cart-cover text-center">
                 <div class="row flex-sm nopadding">
                     <div class="col-md-3 flex-item-2">

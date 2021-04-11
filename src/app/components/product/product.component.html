@@ -21,25 +21,30 @@
         <div *ngIf="products.length==0 && user">No Items Found..</div>
         <div *ngFor="let product of products | paginate: {
             id: 'listing_pagination', itemsPerPage: 12, currentPage: page, totalItems: totalProducts}"
-            class=" card col-md-3" style="width: 18rem;">
+            class="  col-md-3" style="width: 18rem;">
             <div class="card-body">
                 <div *ngIf="isAdmin;" (click)="removeProduct(proModal); proId(product._id,i)"
                     class="close-div text-right align-self-end">
                 </div>
-                <div class="product-img text-center">
+                <div class=" text-center">
                     <img src="{{product.image}}" (click)="openImage(imageModal); imageId(product)"
                         class="img-fluid img-responsive product-image align-self-center">
                 </div>
-                <h5 class="card-title">{{product.title.slice(0,13)}}</h5>
+                <div class="card">
+                    <h5 class="card-title">{{product.title.slice(0,13)}}</h5>
                 <hr>
-                <div class="card-text text-center">
-                    <p class="details">{{product.details.slice(0,50)}} </p>
+                <div class="text-center">
+                    <!-- <p class="details">{{product.details.slice(0,50)}} </p> -->
                     <p class="price">${{product.price}} </p>
                 </div>
                 <div class="d-flex flex-column mt-4">
                     <a (click)="addCart(product._id)" *ngIf="!isAdmin" class="btn-1">
                         Add to cart
                     </a>
+                </div>
+                </div>
+                <div *ngIf="isLoading;">
+                    <app-spinner></app-spinner>
                 </div>
             </div>
         </div>

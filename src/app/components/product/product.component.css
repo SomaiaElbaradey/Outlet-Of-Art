@@ -6,16 +6,17 @@
 
 .cards .card{
     border: none;
-    background-color: #eef2de;
-    color: rgb(70, 68, 68);
+    /* background-color: #ecbdc4;
+    color: rgb(70, 68, 68); */
     text-align: center;
+    margin-bottom: 10px;
 }
 
 .card-icon-div{
     border-radius: 50%;
     width: 50px;
     height: 50px;
-    color: #eef2de;
+    color: #fcf1f1;
 }
 
 .card .card-title{
@@ -23,16 +24,16 @@
     font-size: 21px;
     padding: 5px;
     margin: 0;
-    margin-top: 10px;
+    margin-top: 15px;
     text-transform: uppercase;
 }
 
-.card .card-text{
+/* .card .card-text{
     font-size: 15px;
-}
+} */
 
 .cards .card:hover{
-    border-bottom: 5px #737373 solid ;
+    /* border-bottom: 5px #737373 solid ; */
 }
 
 .paginationNo /deep/ .ngx-pagination .current {
@@ -47,11 +48,11 @@
 }
 
 .card{
-    margin-bottom: 1em;
+    /* margin-bottom: 1em;
     -webkit-box-shadow: 0px 4px 6px 0px rgba(0, 0, 0, 0.15);
     -moz-box-shadow: 0px 4px 6px 0px rgba(0, 0, 0, 0.15);
     box-shadow: 0px 4px 6px 0px rgba(0, 0, 0, 0.15);
-    margin-top: 5px;
+    margin-top: 5px; */
 }
 
 .close-div{
@@ -88,6 +89,7 @@
 .price{
     font-weight: 600;
     color: rgb(14, 112, 99);
+    margin: 0 ;
 }
 
 

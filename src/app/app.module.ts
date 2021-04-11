@@ -28,6 +28,7 @@ import { LogginAuthGuardService } from './services/loggin-auth-guard.service';
 import { AuthGuardService } from './services/auth-guard.service';
 import { AdminAuthService } from './services/admin-auth.service';
 import { UserAuthService } from './services/user-auth.service';
+import { SpinnerService } from './services/spinner.service';
 
 import { MatInputModule } from '@angular/material/input';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
@@ -40,6 +41,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { ToastrModule } from 'ngx-toastr';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { PromotionComponent } from './components/promotion/promotion.component';
+import { SpinnerComponent } from './components/spinner/spinner.component';
 
 const routes: Routes = [
   { path: 'home', component: HomeComponent },
@@ -70,7 +72,8 @@ const routes: Routes = [
     AboutComponent,
     OrdersComponent,
     AddProductComponent,
-    PromotionComponent
+    PromotionComponent,
+    SpinnerComponent
   ],
   imports: [
     BrowserModule,
@@ -91,6 +94,7 @@ const routes: Routes = [
     MaterialFileInputModule
   ],
   providers: [
+    SpinnerService,
     AuthGuardService,
     LogginAuthGuardService,
     UserAuthService,
