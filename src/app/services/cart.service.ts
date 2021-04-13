@@ -1,10 +1,7 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHandler, HttpHeaders, HttpParams, HttpRequest  } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 import { Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
-
-import { Gallery } from '../gallery';
 
 @Injectable({
   providedIn: 'root'

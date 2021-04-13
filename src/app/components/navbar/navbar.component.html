@@ -17,27 +17,27 @@
     <ul class="navbar-nav mr-auto">
       <li class="nav-item ">
         <a class="nav-link" routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
-          <i class="fa fa-home"><span>Home</span></i> 
-        </a>
-      </li>
-      <li class="nav-item" >
-        <a *ngIf="!isAdmin" class="nav-link"  routerLink="/cart" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
-          <i class="fa fa-shopping-cart"><span>Cart</span></i> 
+          <span>Home</span>
         </a>
       </li>
       <li class="nav-item" >
         <a class="nav-link" *ngIf="!isAdmin"  routerLink="/order" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
-          <i class="fa fa-archive"><span>Order</span></i> 
+          <span>Order</span>
         </a>
       </li>
       <li class="nav-item" >
         <a *ngIf="isAdmin" class="nav-link "  routerLink="/orders" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
-          <i class="fa fa-archive"><span>Orders</span></i> 
+          <span>Orders</span>
         </a>
       </li>
       <li class="nav-item" >
         <a class="nav-link "  routerLink="/about" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
-          <i class="fa fas fa-info-circle"><span>About</span></i>
+          <span>About</span>
+        </a>
+      </li>
+      <li class="nav-item" >
+        <a *ngIf="!isAdmin" class="nav-link"  routerLink="/cart" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
+          <span>Cart</span> 
         </a>
       </li>
     </ul>
@@ -46,13 +46,12 @@
       <li class="nav-item" >
         <a class="nav-link" [routerLink]="root" routerLinkActive="active-profile" [routerLinkActiveOptions]="{exact: true}" (click)=" onClick()">
           <i [class]="iconClass"></i>
-          {{action}}
+          <!-- {{action}} -->
         </a>
       </li>
       <li class="nav-item" (click)="logOut()">
         <a *ngIf="user" class="nav-link" href="/">
           <i class="fas fa-sign-out-alt fa-lg"></i>
-          Sign out
         </a>
       </li>
     </ul>

@@ -167,7 +167,7 @@
   }
   
   .p-t-180 {
-    padding-top: 130px;
+    padding-top: 100px!important;
   }
   
   .p-t-20 {
@@ -539,8 +539,6 @@
   }
   .p{
     color:rgb(15, 15, 15);
-    margin-top: 15px ;
-    margin-left: 15px;
     text-decoration: underline;
     cursor: pointer;
   }

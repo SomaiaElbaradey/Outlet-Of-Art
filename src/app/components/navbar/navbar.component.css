@@ -10,7 +10,7 @@ position: relative;
 position: relative;
 width: 36px;
 font-size: 24px;
-padding:0px 40px;
+/* padding:0px 40px; */
 }
 
 .navbar-icon-top .navbar-nav .nav-link > .fa span{

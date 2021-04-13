@@ -1,8 +1,8 @@
 <div class="container cards">
     <div class="row d-flex justify-content-center">
-        <div *ngIf="user;" class="col-12 product-header text-center">
-            <h2><span>P</span>roducts</h2>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+        <div class="col-12 product-header text-center">
+            <h2><span>C</span>ollections</h2>
+            <p>One eye sees, the other feels.</p>
             <div class="search-container">
                 <button>
                     <input #searchInput type="search" id="gsearch" name="gsearch" (keyup)="search(searchInput)"
@@ -18,16 +18,17 @@
                 <app-add-product (addProductEvent)="addProductEvent($event)" *ngIf="isAdding"></app-add-product>
             </div>
         </div>
-        <div *ngIf="products.length==0 && user">No Items Found..</div>
-        <div *ngFor="let product of products | paginate: {
-            id: 'listing_pagination', itemsPerPage: 12, currentPage: page, totalItems: totalProducts}"
+        <div *ngIf="products.length==0">No Items Found..</div>
+        <div *ngFor="let product of products| paginate: {
+            id: 'listing_pagination', itemsPerPage: 12, currentPage: page, totalItems: totalProducts} let i=index"
+             
             class="  col-md-3" style="width: 18rem;">
             <div class="card-body">
                 <div *ngIf="isAdmin;" (click)="removeProduct(proModal); proId(product._id,i)"
                     class="close-div text-right align-self-end">
                 </div>
                 <div class=" text-center">
-                    <img src="{{product.image}}" (click)="openImage(imageModal); imageId(product)"
+                    <img src="{{productsImages[i]}}" (click)="openImage(imageModal); imageId(product, i)"
                         class="img-fluid img-responsive product-image align-self-center">
                 </div>
                 <div class="card">
@@ -49,7 +50,7 @@
             </div>
         </div>
     </div>
-    <pagination-controls *ngIf="user;" id="listing_pagination" class="text-center paginationNo" maxSize="6"
+    <pagination-controls id="listing_pagination" class="text-center paginationNo" maxSize="6"
         directionLinks="true" (pageChange)="page = $event"></pagination-controls>
 
     <!-- modal to delete product -->
@@ -74,7 +75,7 @@
             <h5 class="modal-title">Product Details</h5>
         </div>
         <div class="modal-body">
-            <img width="100%" src="{{image.image}}">
+            <img width="100%" src="{{productsImages[img_index]}}">
         </div>
         <h5 class="text-center p-3">
             {{image.title}}

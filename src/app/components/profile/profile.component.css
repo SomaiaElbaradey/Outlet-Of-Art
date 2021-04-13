@@ -4,9 +4,11 @@
     width: 100%;
     margin: 0;
     padding-top: 150px;
+    padding-bottom: 150px;
+
     color: #2e323c;
     
-	background: -webkit-gradient(linear, left bottom, left top, from(#f5dce0), to(#fcf1f1));
+	background: -webkit-gradient(linear, left bottom, left top, from(#ffd5cd), to(#fcf1f1));
     background: -webkit-linear-gradient(bottom, #ffd5cd 0%, #fcf1f1 100%);
     background: -moz-linear-gradient(bottom, #ffd5cd 0%, #fcf1f1 100%);
     background: -o-linear-gradient(bottom, #ffd5cd 0%, #fcf1f1 100%);

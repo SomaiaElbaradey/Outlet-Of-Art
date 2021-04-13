@@ -5,7 +5,7 @@
             <div class="col-12 order-header">
                 <img width="200" src={{priceImg}}>
                 <h4><span>O</span>rders</h4>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                <p>Creativity takes courage.</p>
             </div>
         </div>
         <div *ngIf="orderFlag" class="row">
@@ -41,7 +41,7 @@
                         </article>
                     </div>
                 </div>
-                <p *ngIf="order.date" class="date">{{order.date}}</p>
+                <p *ngIf="order.date" class="date">{{order.date.slice(0, -14)}}</p>
             </ng-template>
             <pagination-controls id="listing_pagination" class="text-center paginationNo" maxSize="6" directionLinks="true"
         (pageChange)="page = $event"></pagination-controls>

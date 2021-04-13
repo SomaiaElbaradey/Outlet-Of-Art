@@ -16,6 +16,27 @@ import { NotificationService } from '../../services/notification.service';
   styleUrls: ['./product.component.css', '../cart/cart.component.css'],
 })
 export class ProductComponent implements OnInit {
+  productsImages = [
+    '/assets/img/pro/1.jpg',
+    '/assets/img/pro/2.jpg',
+    '/assets/img/pro/3.jpg',
+    '/assets/img/pro/4.jpg',
+    '/assets/img/pro/5.jpg',
+    '/assets/img/pro/6.jpg',
+    '/assets/img/pro/7.jpg',
+    '/assets/img/pro/8.jpg',
+    '/assets/img/pro/19.jpg',
+    '/assets/img/pro/10.jpg',
+    '/assets/img/pro/11.jpg',
+    '/assets/img/pro/12.jpg',
+    '/assets/img/pro/20.jpg',
+    '/assets/img/pro/21.jpg',
+    '/assets/img/pro/15.jpg',
+    '/assets/img/pro/22.jpg',
+    '/assets/img/pro/17.jpg',
+    '/assets/img/pro/18.jpg',
+    '/assets/img/pro/23.jpg',
+  ];
   token = localStorage.getItem('Token');
   isAdmin: boolean = localStorage.getItem('isAdmin') == 'true';
   user: boolean = localStorage.getItem('Token') != null;
@@ -37,7 +58,6 @@ export class ProductComponent implements OnInit {
   ngOnInit(): void {
     this.isAdding = false;
     this.getAllProducts();
-    console.log(this.isAdmin);
   }
   getAllProducts() {
     this.isLoading = true;
@@ -87,13 +107,20 @@ export class ProductComponent implements OnInit {
 
   //add product to user cart
   addCart(id) {
-    this.CartService.addProduct(id).subscribe((Response) => {
+    if(!this.user){
+      this.notifyService.showInfo(
+        'Please Sign In to add Product to your cart ',
+        'Sign In'
+      );
+    } else {
+        this.CartService.addProduct(id).subscribe((Response) => {
       this.notifyService.showSuccess(
         'Product added to your cart successfuly ',
         'Added to cart'
       );
     }),
       (err) => console.log(err);
+    }
   }
 
   //search for product
@@ -106,8 +133,10 @@ export class ProductComponent implements OnInit {
 
   //open image
   image: string;
-  imageId(_image) {
+  img_index=0;
+  imageId(_image, i) {
     this.image = _image;
+    this.img_index = i;
   }
   openImage(_image) {
     this.modalService

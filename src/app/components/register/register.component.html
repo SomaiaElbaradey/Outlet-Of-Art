@@ -45,15 +45,10 @@
                     <div >
                         <div class="rs-select2 js-select-simple select--no-search">
                           <label class="gender">Gender  </label>  
-                           <select class="select-dropdown"  formControlName="gender">
-                                <option selected disabled="disabled" >Gender</option>
-                                <option >Male</option>
+                           <select class="select-dropdown">
+                                <option selected>Male</option>
                                 <option>Female</option>
                             </select>
-                            <p *ngIf="myForm.controls.gender.errors" class="alert ">
-                                <span *ngIf="myForm.controls.gender.errors.required" class="alert-danger">
-                                </span>
-                            </p>
                         </div>
                     </div>
                     <br>
@@ -63,10 +58,10 @@
                         </span>
                     </p>
                     <div class="p-t-10">
-                        <button class="btn btn--pill btn-light " type="submit" (click)="Register()" [disabled]="!myForm.valid">Submit</button>
-                    </div>
+                <button class="btn btn--pill btn-light " type="submit" (click)="Register()" [disabled]="!myForm.valid">Submit</button>                    
+            </div>
                 </form>
-                <p class="p"(click)="login()">already have an acount</p>
+                <p class="mt-2">Have an acount?<span class="p"(click)="login()"> Login</span></p> 
             </div>
         </div>
     </div>

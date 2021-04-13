@@ -173,7 +173,7 @@
     }
     
     .p-t-180 {
-      padding-top: 130px;
+      padding-top: 100px;
     }
     
     .p-t-20 {
@@ -545,8 +545,6 @@
     }
     .p{
       color:rgb(15, 15, 15);
-      margin-top: 15px ;
-      margin-left: 15px;
       text-decoration: underline;
       cursor: pointer;
     }
@@ -557,4 +555,8 @@
   
     .alert-danger{
       color: black;
+    }
+
+    .select-dropdown option{
+      font-size: 15px;
     }
