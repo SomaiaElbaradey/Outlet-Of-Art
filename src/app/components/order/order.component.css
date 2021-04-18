@@ -1,54 +1,64 @@
-.cart-cover{
-    padding-top: 0px 0px!important;
+.cart-cover {
+  padding-top: 0px 0px !important;
 }
 
 .cart-cover article {
-    padding-top: 0px!important;
+  padding-top: 0px !important;
 }
 
-.order-header{
-    margin-bottom: 10px;
+.order-header {
+  animation: toBotton 1s backwards;
+  margin-bottom: 10px;
 }
 
-.order-header p{
-    color: #797878;
+.order-header p {
+  color: #797878;
 }
 
-.order-header h4 span{
-    font-size: 39px;
+.order-header h4 span {
+  font-size: 39px;
 }
 
-.pending{
-    color: #ef8d32;
+.pending {
+  color: #ef8d32;
 }
 
-.accepted{
-    color: #0c9463;
+.accepted {
+  color: #0c9463;
 }
 
-.rejected{
-    color: #c70039;
+.rejected {
+  color: #c70039;
 }
 
 .paginationNo /deep/ .ngx-pagination .current {
-    background: #737373;
-    color: #fff;
+  background: #737373;
+  color: #fff;
 }
 
-.paginationNo{
-    margin-bottom: 10px;
-    color: #737373;
-    font-weight: 800;
+.paginationNo {
+  margin-bottom: 10px;
+  color: #737373;
+  font-weight: 800;
 }
 
 @media (max-width: 450px) {
-    .order-cart h4{
-        font-size: 15px!important;
-    }
+  .order-cart h4 {
+    font-size: 15px !important;
+  }
 }
 
 @media (max-width: 250px) {
-    .order-cart h4{
-        font-size: 12px!important;
-    }
+  .order-cart h4 {
+    font-size: 12px !important;
+  }
+}
+
+@keyframes toBotton {
+  0% {
+    transform: translateY(-4rem);
+  }
+  100% {
+    transform: translateY(0);
+  }
 }

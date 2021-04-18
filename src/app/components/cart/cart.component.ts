@@ -20,23 +20,8 @@ export class CartComponent implements OnInit {
     '/assets/img/pro/1.jpg',
     '/assets/img/pro/2.jpg',
     '/assets/img/pro/3.jpg',
-    '/assets/img/pro/4.jpg',
-    '/assets/img/pro/5.jpg',
-    '/assets/img/pro/6.jpg',
-    '/assets/img/pro/7.jpg',
-    '/assets/img/pro/8.jpg',
-    '/assets/img/pro/19.jpg',
-    '/assets/img/pro/10.jpg',
-    '/assets/img/pro/11.jpg',
-    '/assets/img/pro/12.jpg',
-    '/assets/img/pro/20.jpg',
-    '/assets/img/pro/21.jpg',
-    '/assets/img/pro/15.jpg',
-    '/assets/img/pro/22.jpg',
-    '/assets/img/pro/17.jpg',
-    '/assets/img/pro/18.jpg',
-    '/assets/img/pro/23.jpg',
   ];
+  
   productImg: string = '/assets/img/products/2.png';
   priceImg: string = '/assets/img/4.png';
   emptyCart: boolean = true;

@@ -4,9 +4,9 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
 
-<nav style="padding: 3px 6px; height: 60px;" class="navbar navbar-icon-top navbar-expand-lg text-center navbar-light  sticky-top">
+<nav style="padding: 1px 6px; height: 60px;" class="navbar navbar-icon-top navbar-expand-lg text-center navbar-light  sticky-top">
   <a class="navbar-brand" href="/">
-    <img src="/../../../assets/logo2.png" width="50" height="25">
+    <img src="/../../../assets/logo2.png" width="63" height="40">
   </a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
     aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -22,7 +22,7 @@
       </li>
       <li class="nav-item" >
         <a class="nav-link" *ngIf="!isAdmin"  routerLink="/order" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
-          <span>Order</span>
+          <span>Orders</span>
         </a>
       </li>
       <li class="nav-item" >
@@ -31,13 +31,13 @@
         </a>
       </li>
       <li class="nav-item" >
-        <a class="nav-link "  routerLink="/about" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
-          <span>About</span>
+        <a *ngIf="!isAdmin" class="nav-link"  routerLink="/cart" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
+          <span>Cart</span> 
         </a>
       </li>
       <li class="nav-item" >
-        <a *ngIf="!isAdmin" class="nav-link"  routerLink="/cart" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
-          <span>Cart</span> 
+        <a class="nav-link "  routerLink="/about" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
+          <span>About</span>
         </a>
       </li>
     </ul>

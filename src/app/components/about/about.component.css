@@ -1,44 +1,67 @@
 .about-card {
-    margin: 0 auto;
-    margin-bottom: 90px;
+  animation: toBotton 1s backwards;
+  margin: 0 auto;
+  margin-bottom: 90px;
 }
 
 .about-card:hover {
-    cursor: pointer;
-    transition: opacity 0.6s;
-    transition-timing-function: ease-in-out;
-    opacity: 0.9;
+  cursor: pointer;
+  transition: opacity 0.6s;
+  transition-timing-function: ease-in-out;
+  opacity: 0.9;
 }
 
 p {
-    color: #737373;
+  color: #737373;
+  animation: toBotton 1s backwards;
 }
 
 h4 {
-    color: black;
-    text-transform: uppercase;
-    font-weight: 600;
+  animation: toBotton 1s backwards;
+  color: black;
+  text-transform: uppercase;
+  font-weight: 600;
 }
 
 h2 {
-    color: black;
-    text-transform: uppercase;
-    font-weight: 600;
+  animation: toBotton 1s backwards;
+  color: black;
+  text-transform: uppercase;
+  font-weight: 600;
 }
 
 h2 span {
-    font-size: 59px;
+  font-size: 59px;
 }
 
 span {
-    font-size: 39px;
+  font-size: 39px;
 }
 
 .empty-space {
-    position: relative;
-    display: block;
+  position: relative;
+  display: block;
 }
 
 .h100-md {
-    height: 100px;
+  height: 100px;
+}
+
+.header-image, .about-card{
+  transition-property: transform;
+  transition-duration: 1s;
+  transition-timing-function: ease-in-out;
+}
+
+.header-image:hover, .about-card:hover {
+  transform: scale(0.95);
+}
+
+@keyframes toBotton {
+  0% {
+    transform: translateY(-2rem);
+  }
+  100% {
+    transform: translateY(0);
+  }
 }

@@ -1,99 +1,146 @@
 <div class="text-center">
-    <div class="container mb-5">
-        <div class="empty-space h35-xs h100-md"></div>
-        <div *ngIf="!emptyCart" class="row">
-            <div class="col-md-7">
-                <ng-template ngFor let-product [ngForOf]="products| paginate: {
-                    id: 'listing_pagination', itemsPerPage: 6, currentPage: page, totalItems: totalProducts}"
-                    let-i="index">
-                    <div *ngIf="isLoading;">
-                        <app-spinner></app-spinner>
-                    </div>
-                    <div class="cart-cover text-center">
-                        <div class="row flex-sm nopadding">
-                            <div class="col-md-6 flex-item-2 product-img">
-                                <a><img width="50%" src="{{productsImages[i]}}" alt="" class="img-fluid"></a>
-                            </div>
-                            <div class="col-md-6 flex-item-1">
-                                <article class="bg-text ">
-                                    <h4>{{product.title.slice(0,14)}}</h4>
-                                    <a class="price">${{product.price}}</a>
-                                    <p>{{product.details.slice(0,50)}}</p>
-                                </article>
-                                <div (click)="deleteProduct(proModal); productId(product._id)" class="btn-wrap"><a
-                                        class="btn-1">
-                                        <span>delete product</span></a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </ng-template>
-                <pagination-controls id="listing_pagination" class="text-center paginationNo" maxSize="6"
-                    directionLinks="true" (pageChange)="page = $event"></pagination-controls>
-            </div>
-            <div class="col-md-5 text-center cart-price">
-                <article>
-                    <a><img src={{priceImg}} alt="" class="img-fluid"></a>
-                    <h6 class="cart-totalPrice">Total:</h6>
-                    <a class="price">${{total}}</a>
-                    <p>checkout to order</p>
+  <div class="container mb-5">
+    <div class="empty-space h35-xs h100-md"></div>
+    <div *ngIf="!emptyCart" class="row">
+      <div class="col-md-7">
+        <ng-template
+          ngFor
+          let-product
+          [ngForOf]="
+            products
+              | paginate
+                : {
+                    id: 'listing_pagination',
+                    itemsPerPage: 6,
+                    currentPage: page,
+                    totalItems: totalProducts
+                  }
+          "
+          let-i="index"
+        >
+          <div *ngIf="products.length == 0  && !isSearching">
+            <app-spinner></app-spinner>
+          </div>
+          <div class="cart-cover text-center">
+            <div class="row flex-sm nopadding d-flex flex-row">
+              <div class="col-md-4 flex-item-2 product-img jus align-self-center">
+                <a class=""
+                  ><img
+                    width="80%"
+                    src="{{ product.image }}"
+                    alt=""
+                    class="img-fluid imagee justify-self-center"
+                /></a>
+              </div>
+              <div class="col-md flex-item-1">
+                <article class="bg-text">
+                  <h4>{{ product.title.slice(0, 14) }}</h4>
+                  <a class="price">${{ product.price }}</a>
+                  <p>{{ product.details.slice(0, 50) }}</p>
                 </article>
-                <div class="btn-wrap text-center">
-                    <a class="btn-2" (click)="checkout(orderModal)"><span>porceed to checkout</span></a>
+                <div
+                  (click)="deleteProduct(proModal); productId(product._id)"
+                  class="btn-wrap"
+                >
+                  <a class="btn-1"> <span>delete product</span></a>
                 </div>
+              </div>
             </div>
+          </div>
+        </ng-template>
+        <pagination-controls
+          id="listing_pagination"
+          class="text-center paginationNo"
+          maxSize="6"
+          directionLinks="true"
+          (pageChange)="page = $event"
+        ></pagination-controls>
+      </div>
+      <div class="col-md-5 text-center cart-price">
+        <article>
+          <a><img src="{{ priceImg }}" alt="" class="img-fluid" /></a>
+          <h6 class="cart-totalPrice">Total:</h6>
+          <a class="price">${{ total }}</a>
+          <p>checkout to order</p>
+        </article>
+        <div class="btn-wrap text-center">
+          <a class="btn-2" (click)="checkout(orderModal)"
+            ><span>porceed to checkout</span></a
+          >
         </div>
-
-        <div *ngIf="emptyCart&&!isLoading">
-            <div class="cart-cover text-center">
-                <div class="row flex-sm nopadding">
-                    <div class="col-md-3 flex-item-2">
-                        <a><img src={{productImg}} alt="" class="img-fluid"></a>
-                    </div>
-                    <div class="col-md-9 flex-item-1 p-4">
-                        <article class="bg-text">
-                            <h4 class="warning-header">Shopping Cart is currently empty</h4>
-                            <p>Add items to your cart and view them here before you checkout.</p>
-                            <div class="btn-wrap"><a class="btn-1" (click)="goHome()"><span>Continue Shopping</span></a>
-                            </div>
-                        </article>
-                    </div>
-                </div>
-            </div>
-        </div>
+      </div>
     </div>
 
-    <!-- modal to checkout order -->
-    <ng-template #orderModal let-modal>
-        <div class="modal-header">
-            <h5 class="modal-title">Checkout Order?</h5>
+    <div *ngIf="emptyCart && !isLoading">
+      <div class="cart-cover text-center">
+        <div class="row flex-sm nopadding">
+          <div class="col-md-3 flex-item-2">
+            <a><img src="{{ productImg }}" alt="" class="img-fluid" /></a>
+          </div>
+          <div class="col-md-9 flex-item-1 p-4">
+            <article class="bg-text">
+              <h4 class="warning-header">Shopping Cart is currently empty</h4>
+              <p>
+                Add items to your cart and view them here before you checkout.
+              </p>
+              <div class="btn-wrap">
+                <a class="btn-1" (click)="goHome()"
+                  ><span>Continue Shopping</span></a
+                >
+              </div>
+            </article>
+          </div>
         </div>
-        <div class="modal-body">
-            <p>
-                Once you checkout the order it goes in order process.
-                you will just be able to cancel the order if pending.
-            </p>
-        </div>
-        <div class="modal-footer">
-            <button type="button" class="btn btn-primary" (click)="checkoutOrder(); modal.close('')">Order</button>
-            <button type="button" class="btn btn-secondary" (click)="modal.close('')">Close</button>
-        </div>
-    </ng-template>
+      </div>
+    </div>
+  </div>
 
-    <!-- modal to delete product -->
-    <ng-template #proModal let-modal>
-        <div class="modal-header">
-            <h5 class="modal-title">Delete Product?</h5>
-        </div>
-        <div class="modal-body">
-            <p>
-                Are you sure you want to delete the selected product from your cart?
-            </p>
-        </div>
-        <div class="modal-footer">
-            <button type="button" class="btn btn-danger" (click)="deleteTheProduct(); modal.close('')">Delete</button>
-            <button type="button" class="btn btn-secondary" (click)="modal.close('')">Close</button>
-        </div>
-    </ng-template>
+  <!-- modal to checkout order -->
+  <ng-template #orderModal let-modal>
+    <div class="modal-header">
+      <h5 class="modal-title">Checkout Order?</h5>
+    </div>
+    <div class="modal-body">
+      <p>
+        Once you checkout the order it goes in order process. you will just be
+        able to cancel the order if pending.
+      </p>
+    </div>
+    <div class="modal-footer">
+      <button
+        type="button"
+        class="btn btn-primary"
+        (click)="checkoutOrder(); modal.close('')"
+      >
+        Order
+      </button>
+      <button type="button" class="btn btn-secondary" (click)="modal.close('')">
+        Close
+      </button>
+    </div>
+  </ng-template>
 
+  <!-- modal to delete product -->
+  <ng-template #proModal let-modal>
+    <div class="modal-header">
+      <h5 class="modal-title">Delete Product?</h5>
+    </div>
+    <div class="modal-body">
+      <p>
+        Are you sure you want to delete the selected product from your cart?
+      </p>
+    </div>
+    <div class="modal-footer">
+      <button
+        type="button"
+        class="btn btn-danger"
+        (click)="deleteTheProduct(); modal.close('')"
+      >
+        Delete
+      </button>
+      <button type="button" class="btn btn-secondary" (click)="modal.close('')">
+        Close
+      </button>
+    </div>
+  </ng-template>
 </div>

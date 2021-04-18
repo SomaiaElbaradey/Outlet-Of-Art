@@ -20,23 +20,8 @@ export class ProductComponent implements OnInit {
     '/assets/img/pro/1.jpg',
     '/assets/img/pro/2.jpg',
     '/assets/img/pro/3.jpg',
-    '/assets/img/pro/4.jpg',
-    '/assets/img/pro/5.jpg',
-    '/assets/img/pro/6.jpg',
-    '/assets/img/pro/7.jpg',
-    '/assets/img/pro/8.jpg',
-    '/assets/img/pro/19.jpg',
-    '/assets/img/pro/10.jpg',
-    '/assets/img/pro/11.jpg',
-    '/assets/img/pro/12.jpg',
-    '/assets/img/pro/20.jpg',
-    '/assets/img/pro/21.jpg',
-    '/assets/img/pro/15.jpg',
-    '/assets/img/pro/22.jpg',
-    '/assets/img/pro/17.jpg',
-    '/assets/img/pro/18.jpg',
-    '/assets/img/pro/23.jpg',
   ];
+
   token = localStorage.getItem('Token');
   isAdmin: boolean = localStorage.getItem('isAdmin') == 'true';
   user: boolean = localStorage.getItem('Token') != null;
@@ -47,7 +32,7 @@ export class ProductComponent implements OnInit {
   productImg: string = '/assets/img/products/2.png';
   page: Number = 1;
   closeResult: string;
-  isLoading = false;
+  isSearching = false;
   constructor(
     private http: HttpClient,
     private ProductService: ProductService,
@@ -60,12 +45,10 @@ export class ProductComponent implements OnInit {
     this.getAllProducts();
   }
   getAllProducts() {
-    this.isLoading = true;
     this.ProductService.allProducts().subscribe((response) => {
       this.allProducts = response['products'];
       this.products = this.allProducts;
       this.totalProducts = this.products.length;
-      this.isLoading = false;
     }),
       (err) => {
         console.log(err);
@@ -107,33 +90,37 @@ export class ProductComponent implements OnInit {
 
   //add product to user cart
   addCart(id) {
-    if(!this.user){
+    if (!this.user) {
       this.notifyService.showInfo(
         'Please Sign In to add Product to your cart ',
         'Sign In'
       );
     } else {
-        this.CartService.addProduct(id).subscribe((Response) => {
-      this.notifyService.showSuccess(
-        'Product added to your cart successfuly ',
-        'Added to cart'
-      );
-    }),
-      (err) => console.log(err);
+      this.CartService.addProduct(id).subscribe((Response) => {
+        this.notifyService.showSuccess(
+          'Product added to your cart successfuly ',
+          'Added to cart'
+        );
+      }),
+        (err) => console.log(err);
     }
   }
 
   //search for product
   search(e) {
+    this.isSearching = true;
     this.products = this.allProducts;
     this.products = this.allProducts.filter((element) => {
       return element.title.toLowerCase().includes(e.value.toLowerCase());
     });
+    setTimeout(() => {
+      this.isSearching = false;
+    }, 1500);
   }
 
   //open image
   image: string;
-  img_index=0;
+  img_index = 0;
   imageId(_image, i) {
     this.image = _image;
     this.img_index = i;

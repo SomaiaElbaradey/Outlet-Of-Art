@@ -1,85 +1,144 @@
 <div class="container cards">
-    <div class="row d-flex justify-content-center">
-        <div class="col-12 product-header text-center">
-            <h2><span>C</span>ollections</h2>
-            <p>One eye sees, the other feels.</p>
-            <div class="search-container">
-                <button>
-                    <input #searchInput type="search" id="gsearch" name="gsearch" (keyup)="search(searchInput)"
-                        placeholder="Search..">
-                    <i class="far fa-search"></i>
-                </button>
-            </div>
-            <div class="product-btn" *ngIf="isAdmin">
-                <a (click)="isAdding = !isAdding" class="btn-2">
-                    Add new product
-                </a>
-                <!-- <button (click)="isAdding = !isAdding" class="btn btn-outline-primary btn-sm mb-2">Add product</button> -->
-                <app-add-product (addProductEvent)="addProductEvent($event)" *ngIf="isAdding"></app-add-product>
-            </div>
-        </div>
-        <div *ngIf="products.length==0">No Items Found..</div>
-        <div *ngFor="let product of products| paginate: {
-            id: 'listing_pagination', itemsPerPage: 12, currentPage: page, totalItems: totalProducts} let i=index"
-             
-            class="  col-md-3" style="width: 18rem;">
-            <div class="card-body">
-                <div *ngIf="isAdmin;" (click)="removeProduct(proModal); proId(product._id,i)"
-                    class="close-div text-right align-self-end">
-                </div>
-                <div class=" text-center">
-                    <img src="{{productsImages[i]}}" (click)="openImage(imageModal); imageId(product, i)"
-                        class="img-fluid img-responsive product-image align-self-center">
-                </div>
-                <div class="card">
-                    <h5 class="card-title">{{product.title.slice(0,13)}}</h5>
-                <hr>
-                <div class="text-center">
-                    <!-- <p class="details">{{product.details.slice(0,50)}} </p> -->
-                    <p class="price">${{product.price}} </p>
-                </div>
-                <div class="d-flex flex-column mt-4">
-                    <a (click)="addCart(product._id)" *ngIf="!isAdmin" class="btn-1">
-                        Add to cart
-                    </a>
-                </div>
-                </div>
-                <div *ngIf="isLoading;">
-                    <app-spinner></app-spinner>
-                </div>
-            </div>
-        </div>
+  <div class="row d-flex justify-content-center">
+    <div class="col-12 product-header text-center">
+      <h2><span>C</span>ollections</h2>
+      <p>One eye sees, the other feels.</p>
+      <div class="search-container">
+        <button>
+          <input
+            #searchInput
+            type="search"
+            id="gsearch"
+            name="gsearch"
+            (keyup)="search(searchInput)"
+            placeholder="Search.."
+          />
+          <i class="far fa-search"></i>
+        </button>
+      </div>
+      <div class="product-btn" *ngIf="isAdmin">
+        <a (click)="isAdding = !isAdding" class="btn-2"> Add new product </a>
+        <app-add-product
+          (addProductEvent)="addProductEvent($event)"
+          *ngIf="isAdding"
+        ></app-add-product>
+      </div>
     </div>
-    <pagination-controls id="listing_pagination" class="text-center paginationNo" maxSize="6"
-        directionLinks="true" (pageChange)="page = $event"></pagination-controls>
+    <div *ngIf="products.length == 0 && isSearching">No Items Found.</div>
+    <div
+      *ngFor="
+        let product of products
+          | paginate
+            : {
+                id: 'listing_pagination',
+                itemsPerPage: 12,
+                currentPage: page,
+                totalItems: totalProducts
+              };
+        let i = index
+      "
+      class="col-md-3"
+      style="width: 18rem"
+    >
+      <div class="card-body">
+        <div
+          *ngIf="isAdmin"
+          (click)="removeProduct(proModal); proId(product._id, i)"
+          class="close-div text-right align-self-end"
+        ></div>
+        <div class="text-center">
+          <img
+            src="{{ product.image }}"
+            (click)="openImage(imageModal); imageId(product, i)"
+            class="img-fluid img-responsive product-image align-self-center"
+          />
+        </div>
+        <div class="card">
+          <h5
+            class="card-title"
+            (click)="openImage(openProduct); imageId(product, i)"
+          >
+            {{ product.title.slice(0, 13) }}
+          </h5>
+          <hr />
+          <div class="text-center">
+            <p class="price">${{ product.price }}</p>
+          </div>
+          <div class="d-flex flex-column mt-4">
+            <a (click)="addCart(product._id)" *ngIf="!isAdmin" class="btn-1">
+              Add to cart
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <pagination-controls
+    id="listing_pagination"
+    class="text-center paginationNo"
+    maxSize="6"
+    directionLinks="true"
+    (pageChange)="page = $event"
+  ></pagination-controls>
 
-    <!-- modal to delete product -->
-    <ng-template #proModal let-modal>
-        <div class="modal-header">
-            <h5 class="modal-title">Delete Product?</h5>
-        </div>
-        <div class="modal-body">
-            <p>
-                This can’t be undone. Once you press delete the product will be deleted permentally.
-            </p>
-        </div>
-        <div class="modal-footer">
-            <button type="button" class="btn btn-danger" (click)="deleteProduct(); modal.close('')">Delete</button>
-            <button type="button" class="btn btn-secondary" (click)="modal.close('')">Close</button>
-        </div>
-    </ng-template>
+  <!-- modal to delete product -->
+  <ng-template #proModal let-modal>
+    <div class="modal-header">
+      <h5 class="modal-title">Delete Product?</h5>
+    </div>
+    <div class="modal-body">
+      <p>
+        This can’t be undone. Once you press delete the product will be deleted
+        permentally.
+      </p>
+    </div>
+    <div class="modal-footer">
+      <button
+        type="button"
+        class="btn btn-danger"
+        (click)="deleteProduct(); modal.close('')"
+      >
+        Delete
+      </button>
+      <button type="button" class="btn btn-secondary" (click)="modal.close('')">
+        Close
+      </button>
+    </div>
+  </ng-template>
 
-    <!-- modal to open product -->
-    <ng-template #imageModal let-modal>
-        <div class="modal-header">
-            <h5 class="modal-title">Product Details</h5>
-        </div>
-        <div class="modal-body">
-            <img width="100%" src="{{productsImages[img_index]}}">
-        </div>
-        <h5 class="text-center p-3">
-            {{image.title}}
+  <!-- modal to open product image -->
+  <ng-template #imageModal let-modal>
+    <div class="modal-body">
+      <img width="100%" src="{{ image.image }}" />
+    </div>
+  </ng-template>
+
+  <!-- modal to open product -->
+  <ng-template #openProduct let-modal>
+    <div class="mt-4">
+      <div class="modal-header mt-0 pt-0">
+        <h5 class="text-center card-title m-0 p-0">
+          {{ image.title.toUpperCase() }}
+          <span class="modal-price">{{ image.price }}$</span>
         </h5>
-        <p class="text-center p-3">{{image.details}}</p>
-    </ng-template>
+      </div>
+      <div class="modal-body row d-flex flex-row">
+        <a class="col-md-6 align-self-center">
+          <img width="100%" src="{{ image.image }}" />
+        </a>
+        <div class="col-md-6 align-self-center body">
+          <p><span>Size:</span> {{ image.size }}</p>
+          <p><span>Materials:</span> {{ image.type }}</p>
+          <a (click)="addCart(image._id)" *ngIf="!isAdmin" class="btn-2">
+            Add to cart
+          </a>
+        </div>
+      </div>
+      <p class="text-center prod-details mb-4">{{ image.details }}</p>
+    </div>
+  </ng-template>
+
+  <div *ngIf="products.length == 0  && !isSearching">
+    <app-spinner></app-spinner>
+  </div>
 </div>

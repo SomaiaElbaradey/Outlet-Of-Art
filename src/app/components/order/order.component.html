@@ -12,7 +12,7 @@
             <ng-template ngFor let-order [ngForOf]="orders| paginate: {
                 id: 'listing_pagination', itemsPerPage: 6, currentPage: page, totalItems: totalOrders}" let-i="index">
                 <div class="cart-cover col-md-12">
-                    <div *ngIf="isLoading;">
+                    <div *ngIf="orders.length == 0;">
                         <app-spinner></app-spinner>
                     </div>
                     <div class="text-center">
