@@ -195,3 +195,8 @@ tbody:hover tr:hover td {
 	margin: 5px;
 	margin-top: 20px;
 }
+
+.card{
+	width: 50%;
+	margin: 0 auto;
+}

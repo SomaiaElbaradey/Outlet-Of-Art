@@ -42,6 +42,7 @@ import { ToastrModule } from 'ngx-toastr';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { PromotionComponent } from './components/promotion/promotion.component';
 import { SpinnerComponent } from './components/spinner/spinner.component';
+import { ProductdetailsComponent } from './components/productdetails/productdetails.component';
 
 const routes: Routes = [
   { path: 'home', component: HomeComponent },
@@ -73,7 +74,8 @@ const routes: Routes = [
     OrdersComponent,
     AddProductComponent,
     PromotionComponent,
-    SpinnerComponent
+    SpinnerComponent,
+    ProductdetailsComponent
   ],
   imports: [
     BrowserModule,
