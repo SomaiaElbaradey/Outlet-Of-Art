@@ -1,4 +1,4 @@
 export const environment = {
   production: true,
-  api: 'https://art-real.herokuapp.com'
+  api: 'https://outlet-of-art.herokuapp.com/'
 };

@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  api: 'https://art-real.herokuapp.com'
+  api: 'https://outlet-of-art.herokuapp.com/'
 };
 // https://art-real.herokuapp.com
 //http://localhost:3000
