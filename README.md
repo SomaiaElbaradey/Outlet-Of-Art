@@ -29,3 +29,10 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
 ## Deployment
 
 The app deployed at:<a href="https://outlet-of-art.herokuapp.com/"> Outlet of Art </a>
+
+## Screenshots
+<img src="https://i.ibb.co/MMqVk88/12.jpg" width="543" height="267" alt="ScreenShoot">
+<img src="https://i.ibb.co/JCtdYVF/13.jpg" width="543" height="267" alt="ScreenShoot">
+<img src="https://i.ibb.co/2hrHkCy/1.jpg" width="543" height="267" alt="ScreenShoot">
+<img src="https://i.ibb.co/x3bNX1M/7.jpg" width="543" height="267" alt="ScreenShoot">
+<img src="https://i.ibb.co/6N1d8XQ/8.jpg" width="543" height="267" alt="ScreenShoot">
