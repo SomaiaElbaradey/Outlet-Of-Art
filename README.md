@@ -1,6 +1,6 @@
 # Outlet of art
 
-This is a front repo for outlet of art. ECommerce application where many buyers and sellers can buy and sell products. Tis project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 11.1.2.
+This is a front repo for outlet of art. ECommerce application where many buyers and sellers can buy and sell products. This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 11.1.2.
 
 ## Development server
 
